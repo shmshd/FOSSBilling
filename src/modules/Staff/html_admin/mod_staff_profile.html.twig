@@ -26,86 +26,91 @@
 				<h4 class="subheader">{{ 'General settings' | trans }}</h4>
 				<div class="list-group list-group-transparent">
 					<a href="#tab-profile" data-bs-toggle="tab" class="list-group-item list-group-item-action d-flex align-items-center nav-link active">{{ 'My Account' | trans }}</a>
-					<a href="#tab-password" data-bs-toggle="tab" class="list-group-item list-group-item-action d-flex align-items-center nav-link">{{ 'Password' | trans }}</a>
-					<a href="#tab-api" data-bs-toggle="tab" class="list-group-item list-group-item-action d-flex align-items-center nav-link">{{ 'API access' | trans }}</a>
+					<a href="#tab-password" data-bs-toggle="tab" class="list-group-item list-group-item-action d-flex align-items-center nav-link">{{ 'Change Password' | trans }}</a>
+					<a href="#tab-api" data-bs-toggle="tab" class="list-group-item list-group-item-action d-flex align-items-center nav-link">{{ 'API Access' | trans }}</a>
 				</div>
 			</div>
 		</div>
 		<div class="col d-flex flex-column">
-			<div class="card-body">
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="tab-profile" role="tabpanel">
-						<h2 class="mb-4">{{ 'My Account' | trans }}</h2>
-						<form method="post" action="{{ 'api/admin/profile/update' | link }}" class="api-form" data-api-msg="{{ 'Successfully updated your profile' | trans }}">
-							<h3 class="card-title">{{ 'Profile Details' | trans }}</h3>
-							<div class="row align-items-center">
-								<div class="col-auto">
-									<span class="avatar avatar-xl" style="background-image: url({{ profile.email|gravatar }}&size=112)"></span>
-								</div>
-								<div class="col-auto">
-									<p>{{ 'To change your profile picture, visit' | trans }} <a href="https://gravatar.com/" target="_blank">Gravatar.com</a>
-									</p>
-								</div>
-							</div>
-							<h3 class="card-title mt-4">{{ 'Personal details' | trans }}</h3>
-							<div class="row g-3">
-								<div class="col-md">
-									<div class="form-label">{{ 'Name' | trans }}</div>
-									<input type="text" name="name" class="form-control" value="{{ profile.name }}" required>
-								</div>
-								<div class="col-md">
-									<div class="form-label">{{ 'Email address' | trans }}</div>
-									<input type="text" name="email" class="form-control" value="{{ profile.email }}" required>
-								</div>
-							</div>
-							<h3 class="card-title mt-4">{{ 'Signature' | trans }}</h3>
-							<div class="row g-3">
-								<div class="col-md">
-									<textarea name="signature" class="form-control" rows="3">{{ profile.signature }}</textarea>
-								</div>
-							</div>
-							<div class="card-footer bg-transparent mt-4">
-								<div class="btn-list justify-content-end">
-									<input type="submit" value="{{ 'Submit' | trans }}" class="btn btn-primary">
-								</div>
-							</div>
-						</form>
-					</div>
+            <div class="tab-content">
 
-					<div class="tab-pane fade" id="tab-password" role="tabpanel">
-						<h2 class="mb-2">{{ 'Change Your Password' | trans }}</h2>
-						<form method="post" action="{{ 'api/admin/profile/change_password' | link }}" class="api-form" data-api-msg="{{ 'Successfully changed your password' | trans }}">
-							<div class="mb-3 row">
-                                <label class="form-label col-3 col-form-label">{{ 'New password' | trans }}</label>
+                <div class="tab-pane fade show active" id="tab-profile" role="tabpanel">
+                    <form method="post" action="{{ 'api/admin/profile/update' | link }}" class="api-form" data-api-msg="{{ 'Successfully updated your profile' | trans }}">
+                        <div class="card-body">
+                            <h2 class="mb-4">{{ 'My Account' | trans }}</h2>
+                            <h3 class="card-title">{{ 'Profile Details' | trans }}</h3>
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <span class="avatar avatar-xl" style="background-image: url({{ profile.email|gravatar }}&size=112)"></span>
+                                </div>
                                 <div class="col">
-                                    <input class="form-control" type="password" name="password" required>
+                                    <p class="text-muted pt-3">
+                                        {{ 'To change your avatar, visit' | trans }} <a href="https://gravatar.com/" target="_blank">Gravatar</a>.
+                                    </p>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                                <label class="form-label col-3 col-form-label">{{ 'Confirm your new password' | trans }}</label>
-                                <div class="col">
-                                    <input class="form-control" type="password" name="password_confirm" required>
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="name">{{ 'Name' | trans }}</label>
+                                    <input id="name" type="text" name="name" class="form-control" value="{{ profile.name }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">{{ 'Email address' | trans }}</label>
+                                    <input id="email" type="text" name="email" class="form-control" value="{{ profile.email }}" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label" for="signature">{{ 'Signature' | trans }}</label>
+                                    <textarea name="signature" id="signature" class="form-control" rows="3">{{ profile.signature }}</textarea>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-footer bg-transparent mt-auto">
+                            <div class="btn-list justify-content-end">
+                                <input type="submit" value="{{ 'Update' | trans }}" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-							<div class="card-footer bg-transparent mt-4">
-								<div class="btn-list justify-content-end">
-									<input type="submit" value="{{ 'Change password' | trans }}" class="btn btn-primary">
-								</div>
-							</div>
-						</form>
-					</div>
+                <div class="tab-pane fade" id="tab-password" role="tabpanel">
+                    <form method="post" action="{{ 'api/admin/profile/change_password' | link }}" class="api-form" data-api-msg="{{ 'Password Changed'|trans }}">
+                        <div class="card-body">
+                            <h2 class="mb-4">{{ 'Change Password' | trans }}</h2>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="current_password">{{ 'Current password' | trans }}</label>
+                                    <input id="new-password" class="form-control" type="password" name="password" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="new_password">{{ 'New password' | trans }}</label>
+                                    <input id="new_password" class="form-control" type="password" name="password" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="form-label" for="confirm_password">{{ 'Confirm password' | trans }}</label>
+                                    <input id="confirm_password" class="form-control" type="password" name="password_confirm" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent mt-auto">
+                            <div class="btn-list justify-content-end">
+                                <input type="submit" value="{{ 'Change password' | trans }}" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-                    <div class="tab-pane fade" id="tab-api" role="tabpanel">
-						<h2 class="mb-2">{{ 'API Key Settings' | trans }}</h2>
-                        <p>{{ 'API keys allow integration with external applications. You will need an API key to authenticate your external application.' | trans }}</p>
-                        <p>{{ 'API keys grant unlimited access to your account, be careful and don\'t share them with anyone.' | trans }}</p>
-                        <p class="text-warning">{{ 'Warning! Resetting the key will break existing applications using it.' | trans }}</p>
-
-						<form method="post" action="{{ 'api/admin/profile/generate_api_key' | link }}" class="api-form" data-api-jsonp="onAfterKeyUpdate">
-							<div class="mb-3 row">
-                                <label class="form-label col-3 col-form-label">{{ 'API Key' | trans }}</label>
-                                <div class="col">
+                <div class="tab-pane fade" id="tab-api" role="tabpanel">
+                    <form method="post" action="{{ 'api/admin/profile/generate_api_key' | link }}" class="api-form" data-api-jsonp="onAfterKeyUpdate">
+                        <div class="card-body">
+                            <h2 class="mb-4">{{ 'API Access' | trans }}</h2>
+                            <p>{{ 'API keys allow integration with external applications. You will need an API key to authenticate your external application.' | trans }}</p>
+                            <p>{{ 'API keys grant unlimited access to your account, be careful and don\'t share them with anyone.' | trans }}</p>
+                            <div class="alert alert-warning" role="alert">
+                                {{ 'Warning! Resetting the key will break existing applications using it.' | trans }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md">
+                                    <label class="form-label col-3 col-form-label" for="apikey">{{ 'API Key' | trans }}</label>
                                     <div class="input-icon">
                                         <input id="apikey" class="form-control" type="text" value="{{ admin.profile_get.api_token }}" readonly="">
                                         <span class="input-icon-addon">
@@ -116,16 +121,15 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-footer bg-transparent mt-auto">
+                            <div class="btn-list justify-content-end">
+                                <input type="submit" value="{{ 'Generate a new key' | trans }}" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
-							<div class="card-footer bg-transparent mt-4">
-								<div class="btn-list justify-content-end">
-									<input type="submit" value="{{ 'Generate a new key' | trans }}" class="btn btn-primary">
-								</div>
-							</div>
-						</form>
-					</div>
-
-				</div>
 			</div>
 		</div>
 	</div>
