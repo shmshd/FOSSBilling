@@ -1,9 +1,11 @@
-@import "~@tabler/core/src/scss/tabler";
-@import "flags";
-@import "~tom-select/dist/css/tom-select.bootstrap5.css";
+// Deprecated CSS to be removed in the future
 @import "bb-deprecated";
 @import "dataTable-deprecated";
 @import "main-deprecated";
+
+@import "~@tabler/core/src/scss/tabler";
+@import "flags";
+@import "~tom-select/dist/css/tom-select.bootstrap5.css";
 @import "jquery-ui";
 @import "~select2/dist/css/select2.css";
 @import "~spectrum-colorpicker/spectrum.css";
