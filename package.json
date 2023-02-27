@@ -37,6 +37,7 @@
   },
   "workspaces": [
     "src/themes/admin_default",
+    "src/themes/sighnaghi",
     "src/modules/Wysiwyg"
   ],
   "config": {
